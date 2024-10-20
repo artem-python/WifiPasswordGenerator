@@ -10,7 +10,7 @@ namespace WifiPasswordGenerator
         public static void GeneratePassword(string[] chars, byte length)
         {
             if (length <= 1) { return; }
-            BigInteger resultLength = CalcPow(chars.Length, length);
+            BigInteger resultLength = BigInteger.Pow(chars.Length, length);
             ulong[] numbers = new ulong[length];
             for (byte i = 0; i < numbers.Length; i++) { numbers[i] = 0; }
             for (BigInteger x = 0; x < resultLength; x++)
@@ -29,11 +29,12 @@ namespace WifiPasswordGenerator
                 }
             }
         }
-        public static BigInteger CalcPow(int a, byte b)
+        /*public static BigInteger CalcPow(int a, byte b)
         {
-            BigInteger result = 1;
+
+            BigInteger result = a;
             for (int i = 0; i < b; i++) { result *= (ulong)a; }
             return result;
-        }
+        }*/
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Numerics;
 
 namespace WifiPasswordGenerator
 {
@@ -13,7 +14,7 @@ namespace WifiPasswordGenerator
             if (File.Exists("test.txt")) { File.Delete("test.txt"); }
             for (byte i = minLength; i <= maxLength; i++)
             {
-                Console.WriteLine($"{i} => {PassGen.CalcPow(chars.Length, i)}");
+                Console.WriteLine($"{i} => {BigInteger.Pow(chars.Length, i)}");
                 PassGen.GeneratePassword(chars, i);
             }
             Console.WriteLine("Done");
