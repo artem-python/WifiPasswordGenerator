@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Numerics;
 
 namespace WifiPasswordGenerator
 {
     public static class PassGen
     {
-        public static void GeneratePassword(string[] chars, byte length)
+        public static void GeneratePassword(string[] chars, byte length, Action<string> action)
         {
             if (length <= 1) { return; }
             BigInteger resultLength = BigInteger.Pow(chars.Length, length);
@@ -17,7 +15,7 @@ namespace WifiPasswordGenerator
             {
                 string result = "";
                 for (byte y = 0; y < length; y++) { result += chars[numbers[y]]; }
-                using (StreamWriter sw = new StreamWriter("test.txt", true)) { sw.WriteLine(result); }
+                action?.Invoke(result);
                 numbers[numbers.Length - 1]++;
                 for (int y = numbers.Length - 1; y >= 0; y--)
                 {
@@ -29,12 +27,5 @@ namespace WifiPasswordGenerator
                 }
             }
         }
-        /*public static BigInteger CalcPow(int a, byte b)
-        {
-
-            BigInteger result = a;
-            for (int i = 0; i < b; i++) { result *= (ulong)a; }
-            return result;
-        }*/
     }
 }
