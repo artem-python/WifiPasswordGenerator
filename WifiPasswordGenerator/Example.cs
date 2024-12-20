@@ -16,7 +16,7 @@ namespace WifiPasswordGenerator
         {
             List<Task> tasks = new List<Task>();
             if (!Directory.Exists("passes")) { Directory.CreateDirectory("passes"); }
-            Console.WriteLine($"Total pass files count: {maxLength - minLength}");
+            Console.WriteLine($"Total pass files count: {maxLength - minLength + 1}");
             for (byte i = minLength; i <= maxLength; i++)
             {
                 byte cache = i;
